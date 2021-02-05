@@ -7,7 +7,6 @@ views in :attr:`provider.views`.
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
-from django.utils.encoding import python_2_unicode_compatible
 
 from provider import constants
 from provider.constants import CLIENT_TYPES
@@ -18,7 +17,7 @@ from provider.utils import now, short_token, long_token, get_code_expiry
 AUTH_USER_MODEL = settings.AUTH_USER_MODEL
 
 
-@python_2_unicode_compatible
+# @python_2_unicode_compatible
 class Client(models.Model):
     """
     Default client implementation.
@@ -90,7 +89,7 @@ class Client(models.Model):
         return cls(**kwargs)
 
 
-@python_2_unicode_compatible
+# @python_2_unicode_compatible
 class Grant(models.Model):
     """
     Default grant implementation. A grant is a code that can be swapped for an
@@ -124,7 +123,7 @@ class Grant(models.Model):
         return self.code
 
 
-@python_2_unicode_compatible
+# @python_2_unicode_compatible
 class AccessToken(models.Model):
     """
     Default access token implementation. An access token is a time limited
@@ -156,7 +155,7 @@ class AccessToken(models.Model):
     scope = models.IntegerField(default=constants.SCOPES[0][0],
                                 choices=constants.SCOPES)
 
-    objects = AccessTokenManager()
+    # objects = AccessTokenManager()
 
     def __str__(self):
         return self.token
@@ -186,7 +185,7 @@ class AccessToken(models.Model):
         return timedelta.days * 86400 + timedelta.seconds
 
 
-@python_2_unicode_compatible
+# @python_2_unicode_compatible
 class RefreshToken(models.Model):
     """
     Default refresh token implementation. A refresh token can be swapped for a

@@ -55,7 +55,6 @@ class OAuth2AccessTokenMixin(AccessTokenMixin):
             at.save()
 
 
-
 class Capture(Capture):
     """
     Implementation of :class:`provider.views.Capture`.
@@ -174,7 +173,7 @@ class AccessTokenDetailView(View):
         JSON_CONTENT_TYPE = 'application/json'
 
         try:
-            access_token = AccessToken.objects.get_token(kwargs['token'])
+            access_token = AccessToken.objects.get(token=kwargs['token'])
             content = {
                 'username': access_token.user.username,
                 'scope': access_token.get_scope_display(),
